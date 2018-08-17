@@ -24,7 +24,7 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 type GetMyCatMessage struct {
-	TargetCat            string   `protobuf:"bytes,1,opt,name=target_cat,json=targetCat" json:"target_cat,omitempty"`
+	TargetCat            string   `protobuf:"bytes,1,opt,name=target_cat,json=targetCat,proto3" json:"target_cat,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -62,8 +62,8 @@ func (m *GetMyCatMessage) GetTargetCat() string {
 }
 
 type MyCatResponse struct {
-	Name                 string   `protobuf:"bytes,1,opt,name=name" json:"name,omitempty"`
-	Kind                 string   `protobuf:"bytes,2,opt,name=kind" json:"kind,omitempty"`
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Kind                 string   `protobuf:"bytes,2,opt,name=kind,proto3" json:"kind,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -144,8 +144,7 @@ func (c *catClient) GetMyCat(ctx context.Context, in *GetMyCatMessage, opts ...g
 	return out, nil
 }
 
-// Server API for Cat service
-
+// CatServer is the server API for Cat service.
 type CatServer interface {
 	GetMyCat(context.Context, *GetMyCatMessage) (*MyCatResponse, error)
 }
